@@ -1,0 +1,5 @@
+{
+"jwtSecret": "someSecret",
+"mongoUri": "mongodb+srv://Roman:vBdH2JwxFQuZqdCy@cluster0.iqltx.mongodb.net/travelApp?retryWrites=true&w=majority",
+"baseUrl": "http://localhost:5000"
+}
