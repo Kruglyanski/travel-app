@@ -1,0 +1,43 @@
+.upperHeader {
+    display: grid;
+    height: 70px;
+    grid-template-columns: 1fr 5fr 1fr 6fr;
+    background-color: white !important;
+}
+
+.lowerHeader {
+    background: url("../../assets/images/shary.jpg") 100% 50% no-repeat;
+    height: 280px;
+    width: 100%;
+    background-size: cover;
+    border-top: 1px solid transparent;
+
+}
+
+h1 {
+    justify-content: center;
+}
+
+
+.ant-layout-header {
+    background-color: white !important;
+    height: 350px !important;
+    padding: 0 !important;
+}
+
+.logo {
+    width: 62px;
+    height: 70px;
+    margin: 0 auto;
+    background-image: url("../../assets/images/logo.png");
+    background-size: contain;
+}
+
+.me {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.login{
+    float: left;
+}

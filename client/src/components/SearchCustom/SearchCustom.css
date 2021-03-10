@@ -1,0 +1,26 @@
+.searchWrapper {
+    width: 246px;
+    height: 40px;
+    margin: 200px 100px 0 auto;
+}
+
+.searchWrapper button, .searchWrapper .ant-input-group-addon {
+    background-color: #D46C4D;
+    border: none;
+    border-radius: 0 12px 12px 0!important;
+}
+
+
+.searchWrapper button:hover {
+    background-color: #DFC5B2;
+    outline: none;
+}
+
+.searchWrapper input {
+    border: #D46C4D;
+    height: 40px;
+    border-radius: 12px 0 0 12px;
+    padding-bottom: 10px;
+
+}
+

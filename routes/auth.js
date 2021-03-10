@@ -1,6 +1,7 @@
 const {Router} = require('express')
 const router = Router()
 const User = require('../models/User')
+const ImgLink = require('../models/ImgLink')
 const bcrypt = require('bcryptjs')
 const {check, validationResult} = require('express-validator')
 const jwt = require('jsonwebtoken')
@@ -83,5 +84,24 @@ router.post(
         }
 
     })
+
+//api/me
+router.post(
+    '/me',
+    async (req, res) =>{
+        try {
+
+            const {userId} = req.body
+
+            const imgLink = await ImgLink.findOne({userId: userId}) || ''
+            const {name} = await User.findById(userId)
+
+            res.json({ avatar: imgLink.avatar, name: name, ok: true})
+        } catch (e) {
+            res.status(500).json({message: "Something went wrong, try again", ok: false})
+        }
+
+    })
+
 
 module.exports = router

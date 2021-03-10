@@ -21,9 +21,8 @@ const initialState = {
     avatar: '',
     name: '',
     isAuthenticated: false,
-    isRegistered: false, // to false!!!
+    isRegistered: false,
     registerMessage: '',
-    isMessageShow: false,
     loginForm: {
         email: '',
         password: ''
@@ -37,7 +36,7 @@ const initialState = {
 
 
 export const authLogin = createAsyncThunk(
-    'authReducer/authLogin',
+    'authReducer/authLogin ',
     async (loginForm: LoginFormType) => {
 
         const data = await api.login(loginForm)
@@ -48,7 +47,7 @@ export const authLogin = createAsyncThunk(
         }
 
         localStorage.setItem('userData', JSON.stringify({
-            userId: data.userId, token: data.token
+            userId: data.userId, token: data.token, name: data.name
         }))
         return data
 
@@ -59,6 +58,8 @@ export const authRegister = createAsyncThunk(
     async (registrationForm: RegistrationFormType) => {
         return await api.register(registrationForm)
             .then((res) => res && res.json())
+
+
     }
 )
 export const setMe = createAsyncThunk(
@@ -90,6 +91,7 @@ const authReducer = createSlice({
                 ...state,
                 token: action.payload.token,
                 userId: action.payload.userId,
+                name: action.payload.name,
                 isAuthenticated: !!action.payload.token
             }
         },
@@ -107,12 +109,33 @@ const authReducer = createSlice({
             }
         },
 
-        setIsCustomModalVisible: (state, action) => {
+        cleanRegisterMessage: (state) => {
             return {
                 ...state,
-                isModalVisible: action.payload
+                registerMessage: ''
             }
         },
+
+        cleanRegistrationForm: (state) => {
+            return {
+                ...state,
+                registrationForm: {
+                    email: '',
+                    password: '',
+                    name: ''
+                }
+            }
+        },
+        cleanLoginForm: (state) => {
+            return {
+                ...state,
+                loginForm: {
+                    email: '',
+                    password: ''
+                }
+            }
+        },
+
 
         authLogout: (state) => {
             return {
@@ -125,13 +148,6 @@ const authReducer = createSlice({
                     email: '',
                     password: ''
                 }
-            }
-        },
-
-        setIsMessageShow: (state, action) => {
-            return {
-                ...state,
-                isMessageShow: action.payload
             }
         }
 
@@ -147,15 +163,6 @@ const authReducer = createSlice({
             }
 
         },
-        [setMe.fulfilled.type]: (state, action) => {
-
-            return {
-                ...state,
-                avatar: action.payload.avatar ? action.payload.avatar.split('\\').join('/').slice(3) : '',
-                name: action.payload.name
-            }
-
-        },
 
         [authLogin.fulfilled.type]: (state, action) => {
 
@@ -164,7 +171,8 @@ const authReducer = createSlice({
                 token: action.payload.token,
                 userId: action.payload.userId,
                 isAuthenticated: !!action.payload.token,
-                authError: ''
+                authError: '',
+                name: action.payload.name
 
             }
 
@@ -176,7 +184,16 @@ const authReducer = createSlice({
                 authError: action.error.message
             }
 
-        }
+        },
+        [setMe.fulfilled.type]: (state, action) => {
+
+            return {
+                ...state,
+                avatar: action.payload.avatar ? action.payload.avatar.split('\\').join('/') : '',
+                name: action.payload.name
+            }
+
+        },
 
     }
 })
@@ -187,9 +204,10 @@ export const {
     registrationFormChange,
     setIsAuthenticated,
     setIsRegistered,
-    setIsMessageShow,
-    setIsCustomModalVisible,
-    cleanAuthError
+    cleanRegistrationForm,
+    cleanAuthError,
+    cleanRegisterMessage,
+    cleanLoginForm
 } = authReducer.actions
 
 export default authReducer.reducer
