@@ -41,7 +41,7 @@ app.post("/api/auth/upload", async function (req, res, next) {
         res.status(500).json({message: "Something went wrong, try again", ok: false})
     }
 })
-app.use('/uploads', express.static(path.join(__dirname , 'uploads')))
+app.use('/uploads', express.static(__dirname + '/uploads'))
 
 
 

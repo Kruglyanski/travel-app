@@ -6,7 +6,7 @@ const Country = require('../models/Country')
 //api/generate записываем страну в БД
 router.post(
     '/generate',
-    async (req, res) =>{
+    async (req, res) => {
         console.log(req.body)
         try {
             // const date = new Date().toLocaleString()
@@ -24,14 +24,25 @@ router.post(
 // /api/countries получаем список стран
 router.get(
     '/countries',
-    async (req, res) =>{
+    async (req, res) => {
 
         try {
-            const countries= await Country.find({})
+            const countries = await Country.find({})
             console.log(countries)
             res.json(countries)
         } catch (e) {
             res.status(500).json({message: "Что-то пошло не так, попробуйте ещё", ok: false})
         }
     })
+// /api/countries/:id
+router.get('/countries/:id', async (req, res) => {
+    try {
+
+        const country = await Country.findById(req.params.id)
+        res.json(country)
+    } catch (e) {
+        res.status(500).json({message: "Что-то пошло не так, попробуйте ещё"})
+    }
+})
+
 module.exports = router

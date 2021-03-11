@@ -50,13 +50,8 @@ export const api = {
         })
     },
     fetchCountries() {
-
         return fetch(`/api/countries`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-
+            method: 'GET'
         }).then(function (response) {
             console.log(response)
             return response
@@ -65,30 +60,9 @@ export const api = {
                 console.log(error)
             })
     },
-    // deletePost(id: number) {
-    //     return fetch(`/api/posts/deletepost?id=${id}`, {
-    //         method: 'DELETE',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //
-    //     }).then(function (response) {
-    //         console.log(response)
-    //         return response
-    //     })
-    //         .catch(function (error) {
-    //             console.log(error)
-    //         })
-    // },
-    sendFormData(formData: any) {
-
-        return fetch('/api/formdata', {
-            method: 'POST',
-            // headers: {
-            //     'Content-Type': 'application/json'
-            // },
-            body: {...formData}
-
+    fetchCountry(id:string) {
+        return fetch(`/api/countries/${id}`, {
+            method: 'GET'
         }).then(function (response) {
             console.log(response)
             return response
@@ -97,6 +71,5 @@ export const api = {
                 console.log(error)
             })
     }
-
 
 }

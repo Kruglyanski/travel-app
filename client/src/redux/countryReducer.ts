@@ -7,13 +7,13 @@ export type PlaceType = {
     photoUrl: string,
 }
 
-type ItemType = {
-
+export type CountryType = {
+    _id: string
     name: string,
     capital: string,
     capitalLocation: {
         coordinates: [
-            number
+            string
         ],
         type: string
     },
@@ -26,19 +26,20 @@ type ItemType = {
 }
 
 type StateType = {
-    items: Array<ItemType>
+    countries: Array<CountryType>
+    currentCountry: CountryType | null
 }
 
 
-const initialState = {
-    items: []
+const initialState: StateType = {
+    countries: [],
+    currentCountry: null
 }
 
 
 export const fetchCountries = createAsyncThunk(
     'countryReducer/fetchCountries ',
     async () => {
-
         const data = await api.fetchCountries()
             .then((res) => res && res.json())
 
@@ -50,79 +51,45 @@ export const fetchCountries = createAsyncThunk(
 
     }
 )
+export const fetchCountry = createAsyncThunk(
+    'countryReducer/fetchCountry ',
+    async (id:string) => {
+        const data = await api.fetchCountry(id)
+            .then((res) => res && res.json())
+        if (!data) {
+            throw new Error(data.message || 'Something went wrong!')
+        }
 
-// export const sendPost = createAsyncThunk(
-//     'postReducer/sendPost',
-//     async (postData:{text: string, userName: string, avatar: string}) => {
-//         const data = await api.sendPost(postData)
-//             .then((res) => res && res.json())
-//         if (!data) {
-//             throw new Error(data.message || 'Something went wrong!')
-//         }
-//         return data
-//     }
-// )
-// export const deletePost = createAsyncThunk(
-//     'postReducer/deletePost',
-//     async (id: number) => {
-//          await api.deletePost(id)
-//         return id
-//     }
-// )
+        return data
 
+    }
+)
 
 const countryReducer = createSlice({
     name: 'countryReducer',
     initialState,
     reducers: {
-        // currentPostChange: (state, action) => {
-        //     return {
-        //         ...state,
-        //         text: action.payload
-        //     }
-        // },
-        // clearInput: (state) => {
-        //     return {
-        //         ...state,
-        //         text: ''
-        //     }
-        // }
-
 
     },
     extraReducers: {
 
         [fetchCountries.fulfilled.type]: (state, action) => {
-
             return {
                 ...state,
-                posts: action.payload
+                countries: action.payload
             }
 
         },
-    //     [deletePost.fulfilled.type]: (state, action) => {
-    //
-    //         return {
-    //             ...state,
-    //             posts: [...state.posts.filter(i => i._id !== String(action.payload))]
-    //
-    //         }
-    //
-    //     },
-    //     [sendPost.fulfilled.type]: (state, action) => {
-    //
-    //         return {
-    //             ...state,
-    //             posts: [
-    //                 ...state.posts,
-    //                 action.payload
-    //             ]
-    //         }
-    //
-    //     }
-    //
-    //
-     }
+        [fetchCountry.fulfilled.type]: (state, action) => {
+
+            return {
+                ...state,
+                currentCountry: action.payload
+            }
+
+        },
+
+    }
 })
 
 export const {} = countryReducer.actions

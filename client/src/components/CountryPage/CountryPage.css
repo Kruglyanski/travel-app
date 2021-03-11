@@ -1,0 +1,27 @@
+.countryPageContent{
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    height: 100%;
+    min-height: 50vh;
+}
+
+.countryInfo .ant-image {
+
+    max-width: 600px;
+    width: auto;
+}
+.countryInfo  {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    font-size: 18px;
+}
+
+.countryInfo .text  {
+    padding: 0 50px;
+}
+
+.carousel {
+    width: 60vw;
+    margin: 50px auto 0;
+}

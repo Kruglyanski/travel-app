@@ -6,7 +6,7 @@ const schema = new Schema({
     capital: {type: String, required: true},
     capitalLocation: {
         coordinates: [
-            {type: Number, required: true}
+            {type: String, required: true}
         ],
         type: {type: String, required: true}
     },

@@ -6,7 +6,7 @@ import countryReducer from './countryReducer'
 
 const rootReducer = combineReducers({
      auth: authReducer,
-     country: countryReducer,
+    countries: countryReducer,
     app: appReducer
 })
 export type RootStateType = ReturnType<typeof rootReducer>

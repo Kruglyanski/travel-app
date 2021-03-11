@@ -11,7 +11,10 @@ import {setIsModalVisible, setModalType} from '../../redux/appReducer'
 import {authLogout, cleanAuthError, setIsRegistered} from '../../redux/authReducer'
 import {FileUploader} from '../FileUploader/FileUploader'
 
-export const HeaderCustom = () => {
+type PropsType = {
+    isSearch: boolean
+}
+export const HeaderCustom:React.FC<PropsType> = ({isSearch}) => {
     const dispatch = useDispatch()
     const avatar = useSelector((state: RootStateType) => state.auth.avatar)
     const isAuthenticated = useSelector((state: RootStateType) => state.auth.isAuthenticated)
@@ -81,7 +84,7 @@ export const HeaderCustom = () => {
 
             </div>
             <div className='lowerHeader'>
-                <SearchCustom/>
+                {isSearch && <SearchCustom/>}
             </div>
 
         </Header>
