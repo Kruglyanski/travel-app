@@ -1,27 +1,44 @@
 .countryPageContent{
     display: grid;
     grid-template-columns: 6fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 2fr 1fr 1fr;
     height: 100%;
     min-height: 50vh;
 }
 
 .countryInfo .ant-image {
-
     max-width: 600px;
     width: auto;
+}
+
+.carouselImg img{
+    display: flex;
+    max-width: 1024px;
+    width: auto;
+    height: auto!important;
+}
+
+.placesTitle{
+    width: 300px;
+    margin: 0 auto 30px;
 }
 .countryInfo  {
     display: grid;
     grid-template-columns: 2fr 3fr;
     font-size: 18px;
+
 }
 
 .countryInfo .text  {
     padding: 0 50px;
+
 }
 
 .carousel {
     width: 60vw;
-    margin: 50px auto 0;
+    margin: 0 auto 0;
+}
+
+.slick-dots-bottom li button {
+    background-color: #D46C4D!important;
 }

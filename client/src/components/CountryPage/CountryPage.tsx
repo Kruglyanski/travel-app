@@ -6,13 +6,14 @@ import {fetchCountry} from '../../redux/countryReducer'
 import {useDispatch, useSelector} from 'react-redux'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {RootStateType} from '../../redux/rootReducer'
-import { Carousel } from 'antd';
+import {Carousel} from 'antd'
+
 const contentStyle = {
     height: '160px',
     color: '#fff',
     lineHeight: '160px',
     textAlign: 'center',
-    background: '#364d79',
+    background: '#364d79'
 }
 type MatchParams = {
     id: string
@@ -32,9 +33,11 @@ const CountryPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
                 currentCountry &&
                 <div className='countryPageContent'>
                     <div className='countryInfo'>
-                        <Image
-                            src={currentCountry.imageUrl}
-                        />
+                        <div className='countryImg'>
+                            <Image
+                                src={currentCountry.imageUrl}
+                            />
+                        </div>
                         <div className="text">
                             <h2 className='title'>
                                 {currentCountry.name}
@@ -49,20 +52,17 @@ const CountryPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
                     </div>
                     <div></div>
                     <div className="carousel">
-
-                        <Carousel effect="fade">
-                            <div>
-                                <h3 style={contentStyle}>1</h3>
-                            </div>
-                            <div>
-                                <h3 style={contentStyle}>2</h3>
-                            </div>
-                            <div>
-                                <h3 style={contentStyle}>3</h3>
-                            </div>
-                            <div>
-                                <h3 style={contentStyle}>4</h3>
-                            </div>
+                        <h2 className='placesTitle'>Интересные места</h2>
+                        <Carousel  autoplay effect="fade">
+                            {currentCountry.places.map((i, index) => {
+                                return (
+                                    <div key={index}>
+                                        <img className='carouselImg' src={i.photoUrl}/>
+                                        <h3>{i.name}</h3>
+                                        <p>{i.description}</p>
+                                    </div>
+                                )
+                            })}
                         </Carousel>
                     </div>
                 </div>
