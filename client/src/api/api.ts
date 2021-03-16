@@ -70,6 +70,29 @@ export const api = {
             .catch(function (error) {
                 console.log(error)
             })
-    }
+    },
+    getCurrency() {
+        return fetch(`https://openexchangerates.org/api/latest.json?app_id=b3ec4cfefd864b3e949e6fd7d3442370`, {
+            method: 'GET'
+        }).then(function (response) {
+            console.log(response)
+            return response
+        })
+            .catch(function (error) {
+                console.log(error)
+            })
+    },
+    getWeather(id: string) {
+        return fetch(`https://api.openweathermap.org/data/2.5/weather?id=${id}&lang=ru&appid=8b62af4ed23abd41a5e906b7a4198515`, {
+            method: 'GET'
+        }).then(function (response) {
+            console.log(response)
+            return response
+        })
+            .catch(function (error) {
+                console.log(error)
+            })
+    },
+
 
 }

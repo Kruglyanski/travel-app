@@ -29,6 +29,7 @@
     "ext": "js"
   },
   "dependencies": {
+    "@types/yandex-maps": "^2.1.14",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "concurrently": "^6.0.0",
@@ -40,7 +41,9 @@
     "moment": "^2.29.1",
     "mongoose": "^5.11.19",
     "multer": "^1.4.2",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "react-player": "^2.9.0",
+    "react-yandex-maps": "^4.6.0"
   },
   "devDependencies": {}
 }

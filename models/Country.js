@@ -8,12 +8,14 @@ const schema = new Schema({
         coordinates: [
             {type: String, required: true}
         ],
-        type: {type: String, required: true}
+        type: {type: String, required: true},
+        id: {type: String, required: true}
     },
     description: {type: String, required: true},
     imageUrl: {type: String, required: true},
     videoUrl: {type: String, required: true},
     currency: {type: String, required: true},
+    timeOffset: {type: String, required: true},
     ISOCode: {type: String, required: true},
     places: [
         {

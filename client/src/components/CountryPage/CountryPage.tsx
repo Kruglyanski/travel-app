@@ -2,11 +2,16 @@
 import React, {useEffect} from 'react'
 import {Image} from 'antd'
 import './CountryPage.css'
-import {fetchCountry} from '../../redux/countryReducer'
+import {fetchCountry, getCurrency} from '../../redux/countryReducer'
 import {useDispatch, useSelector} from 'react-redux'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {RootStateType} from '../../redux/rootReducer'
 import {Carousel} from 'antd'
+import {YAMap} from '../Map/Map'
+import ReactPlayer from 'react-player'
+import {Currency} from '../Currency/Currency'
+import {Weather} from '../Weather/Weather'
+import {Time} from '../Time/Time'
 
 const contentStyle = {
     height: '160px',
@@ -50,7 +55,11 @@ const CountryPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
                             </p>
                         </div>
                     </div>
-                    <div></div>
+                    <div>
+                        <Currency currency={currentCountry.currency}/>
+                        <Weather />
+                        <Time/>
+                    </div>
                     <div className="carousel">
                         <h2 className='placesTitle'>Интересные места</h2>
                         <Carousel  autoplay effect="fade">
@@ -64,6 +73,14 @@ const CountryPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
                                 )
                             })}
                         </Carousel>
+                    </div>
+                    <div></div>
+                    <div>
+                        <ReactPlayer url={currentCountry.videoUrl} />
+                    </div>
+                    <div></div>
+                    <div>
+                        <YAMap coords={currentCountry.capitalLocation.coordinates}/>
                     </div>
                 </div>
             }

@@ -9,7 +9,7 @@ import {HeaderCustom} from '../HeaderCustom/HeaderCustom'
 import {setIsAuthenticated, setMe} from '../../redux/authReducer'
 import {useDispatch, useSelector} from 'react-redux'
 import {RootStateType} from '../../redux/rootReducer'
-import {fetchCountries} from '../../redux/countryReducer'
+import {fetchCountries, getCurrency} from '../../redux/countryReducer'
 import {CardList} from '../CardList/CardList'
 
 const { Header, Content, Footer, Sider } = Layout
