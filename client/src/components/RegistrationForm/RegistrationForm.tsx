@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import {
     Form,
     Input,
@@ -88,11 +88,11 @@ export const RegistrationForm = () => {
                     rules={[
                         {
                             type: 'email',
-                            message: 'The input is not valid E-mail!'
+                            message: 'Введен невалидный E-mail!'
                         },
                         {
                             required: true,
-                            message: 'Please input your E-mail!'
+                            message: 'Введите E-mail!'
                         }
                     ]}
                 >
@@ -105,11 +105,11 @@ export const RegistrationForm = () => {
 
                 <Form.Item
                     name="password"
-                    label="Password"
+                    label="Пароль"
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your password!'
+                            message: 'Введите пароль!'
                         }
                     ]}
                     hasFeedback
@@ -123,13 +123,13 @@ export const RegistrationForm = () => {
 
                 <Form.Item
                     name="confirm"
-                    label="Confirm Password"
+                    label="Подтвердите пароль"
                     dependencies={['password']}
                     hasFeedback
                     rules={[
                         {
                             required: true,
-                            message: 'Please confirm your password!'
+                            message: 'Подтвердите пароль!'
                         },
                         ({getFieldValue}) => ({
                             validator(_, value) {
@@ -137,7 +137,7 @@ export const RegistrationForm = () => {
                                     return Promise.resolve()
                                 }
 
-                                return Promise.reject('The two passwords that you entered do not match!')
+                                return Promise.reject('Пароли не совпадают!')
                             }
                         })
                     ]}
@@ -149,8 +149,8 @@ export const RegistrationForm = () => {
                     name="name"
                     label={
                         <span>
-          Name&nbsp;
-                            <Tooltip title="What do you want others to call you?">
+          Имя&nbsp;
+                            <Tooltip title="Введите ваше имя">
             <QuestionCircleOutlined/>
           </Tooltip>
         </span>
@@ -158,7 +158,7 @@ export const RegistrationForm = () => {
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your name!',
+                            message: 'Введите ваше имя!',
                             whitespace: true
                         }
                     ]}
@@ -169,10 +169,6 @@ export const RegistrationForm = () => {
                         onChange={changeHandler}
                     />
                 </Form.Item>
-                {/*<div className='uploadWrapper'>*/}
-                {/*    <FileUploader/>*/}
-
-                {/*</div>*/}
                 <br/>
                 <Form.Item {...tailFormItemLayout}>
                     <Button
@@ -181,7 +177,7 @@ export const RegistrationForm = () => {
                         style={{width: 150}}
                         onClick={registerHandler}
                     >
-                        Register
+                        Отправить
                     </Button>
                 </Form.Item>
 

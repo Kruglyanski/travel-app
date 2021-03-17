@@ -63,7 +63,12 @@ const CountryPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
 
                     <div className="carousel">
                         <h2 className='subTitle'>Интересные места</h2>
-                        <Carousel dotPosition='top'  autoplay effect="fade">
+                        <Carousel
+                            dotPosition='top'
+                            autoplay
+                            effect="fade"
+
+                        >
                             {currentCountry.places.map((i, index) => {
                                 return (
                                     <div key={index}>

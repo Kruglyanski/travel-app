@@ -1,6 +1,6 @@
 .countryPageContent{
     display: grid;
-    grid-template-rows: 1fr 1.5fr 1fr 1fr;
+    grid-template-rows: 0.8fr 1.3fr 1.1fr 1fr;
     height: 100%;
     min-height: 50vh;
     justify-content: center;
@@ -42,10 +42,9 @@
     width: auto;
 }
 
-.carouselImg img{
+.ant-carousel img{
     display: flex;
-    max-width: 1024px;
-    width: auto;
+    width: 60vw!important;
     height: auto!important;
 }
 
@@ -68,11 +67,11 @@
 
 .carousel {
     width: 60vw;
-    margin: 0 auto 0;
+    margin: 0 auto ;
 }
 
-.slick-dots-bottom li button {
-    background-color: #D46C4D!important;
+.slick-dots-top li button  {
+    height: 10px!important;
 }
 
 

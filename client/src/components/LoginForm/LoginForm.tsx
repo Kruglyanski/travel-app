@@ -55,6 +55,7 @@ export const LoginForm: React.FC = () => {
                 initialValues={{remember: true}}
             >
                 <div className='logo'/>
+                <br/>
                 <Form.Item
                     name="username"
                     rules={[{required: true, message: 'Пожалуйста, введите email!'}]}
