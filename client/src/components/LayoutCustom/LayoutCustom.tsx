@@ -25,7 +25,7 @@ export const LayoutCustom: React.FC<PropsType> = ({children, isSearch}) => {
         const localStorageAuthData = JSON.parse(localStorage.getItem('userData') as string)
         localStorageAuthData && dispatch(setIsAuthenticated(localStorageAuthData))
         const localStorageLangData = JSON.parse(localStorage.getItem('language') as string)
-        dispatch(setLanguage(localStorageLangData.language))
+        localStorageLangData && dispatch(setLanguage(localStorageLangData.language))
         isAuthenticated && dispatch(setMe(userId))
     }, [dispatch, userId])
 
