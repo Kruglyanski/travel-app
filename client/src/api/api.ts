@@ -52,8 +52,8 @@ export const api = {
         })
     },
 
-    fetchCountries() {
-        return fetch(`/api/countries`, {
+    fetchCountries(lang: string) {
+        return fetch(`/api/countries?lang=${lang}`, {
             method: 'GET'
         }).then(function (response) {
             console.log(response)
@@ -64,8 +64,8 @@ export const api = {
             })
     },
 
-    fetchCountry(id:string) {
-        return fetch(`/api/countries/${id}`, {
+    fetchCountry(id:string, lang:string) {
+        return fetch(`/api/countries/${id}?lang=${lang}`, {
             method: 'GET'
         }).then(function (response) {
             console.log(response)
@@ -88,8 +88,8 @@ export const api = {
             })
     },
 
-    getWeather(id: string) {
-        return fetch(`https://api.openweathermap.org/data/2.5/weather?id=${id}&lang=ru&appid=8b62af4ed23abd41a5e906b7a4198515`, {
+    getWeather(id: string, lang: string) {
+        return fetch(`https://api.openweathermap.org/data/2.5/weather?id=${id}&lang=${lang}&appid=8b62af4ed23abd41a5e906b7a4198515`, {
             method: 'GET'
         }).then(function (response) {
             console.log(response)

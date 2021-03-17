@@ -5,6 +5,7 @@ import {CountryType, getRate, setRate} from '../../redux/countryReducer'
 import {useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {RootStateType} from '../../redux/rootReducer'
+import {useTranslation} from 'react-i18next'
 
 
 const {Meta} = Card
@@ -17,6 +18,12 @@ type PropsType = {
 
 
 export const CardCustom: React.FC<PropsType> = ({country}) => {
+    const { t, i18n } = useTranslation();
+
+    const changeLanguage = (language: string) => {
+        i18n.changeLanguage(language)
+    }
+
     const userId = useSelector((state: RootStateType) => state.auth.userId)
     const rate = useSelector((state: RootStateType) => state.countries.rate)
     const isAuthenticated = useSelector((state: RootStateType) => state.auth.isAuthenticated)
@@ -81,6 +88,7 @@ export const CardCustom: React.FC<PropsType> = ({country}) => {
                 disabled={isDisabled}
                 value={countryRate}
             />
+
         </Card>
     )
 }

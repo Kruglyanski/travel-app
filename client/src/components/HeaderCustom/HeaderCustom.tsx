@@ -1,14 +1,15 @@
 import {SearchCustom} from '../SearchCustom/SearchCustom'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {Header} from 'antd/lib/layout/layout'
 import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {AvatarCustom} from '../AvatarCustom/AvatarCustom'
 import {RootStateType} from '../../redux/rootReducer'
 import './HeaderCustom.css'
-import {setIsModalVisible, setModalType} from '../../redux/appReducer'
+import {setIsModalVisible, setModalType, setLanguage} from '../../redux/appReducer'
 import {authLogout, cleanAuthError, setIsRegistered} from '../../redux/authReducer'
 import {FileUploader} from '../FileUploader/FileUploader'
+import {Select} from '../Select/Select'
 
 type PropsType = {
     isSearch: boolean
@@ -18,7 +19,25 @@ export const HeaderCustom: React.FC<PropsType> = ({isSearch}) => {
     const avatar = useSelector((state: RootStateType) => state.auth.avatar)
     const isAuthenticated = useSelector((state: RootStateType) => state.auth.isAuthenticated)
     const userName = useSelector((state: RootStateType) => state.auth.name)
-
+    const language = useSelector((state: RootStateType) => state.app.language)
+    const [login, setLogin] = useState('Войти')
+    const [register, setRegister] = useState('Зарегистрираваться')
+    const [logout, setLogout] = useState('Выйти')
+    useEffect(() => {
+        if (language === 'en') {
+            setLogin('Login')
+            setLogout('Logout')
+            setRegister('Register')
+        } else if (language === 'de') {
+            setLogin('Eintreten')
+            setLogout('Ausloggen')
+            setRegister('Registrieren')
+        } else {
+            setLogin('Войти')
+            setLogout('Выйти')
+            setRegister('Зарегистрираваться')
+        }
+    }, [language])
     const logoutHandler = () => {
         dispatch(authLogout())
         localStorage.removeItem('userData')
@@ -50,10 +69,10 @@ export const HeaderCustom: React.FC<PropsType> = ({isSearch}) => {
                         <>
                             <div></div>
                             <div className='login' onClick={loginHandler}>
-                                <a>Log In</a>
+                                <a>{login}</a>
                             </div>
                             <div className='register' onClick={registerHandler}>
-                                <a>Register</a>
+                                <a>{register}</a>
                             </div>
                         </>
                         :
@@ -68,13 +87,15 @@ export const HeaderCustom: React.FC<PropsType> = ({isSearch}) => {
                             }
                             <div className='name'>{userName || 'Пользователь'} </div>
                             <div className='logout' onClick={logoutHandler}>
-                                <a>Log Out</a>
+                                <a>{logout}</a>
                             </div>
                         </>
                 }
             </div>
             <div className='lowerHeader'>
+                <Select />
                 {isSearch && <SearchCustom/>}
+
             </div>
         </Header>
     )

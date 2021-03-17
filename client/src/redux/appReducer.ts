@@ -3,12 +3,13 @@ import {createSlice} from '@reduxjs/toolkit'
 type StateType = {
     isModalVisible: boolean
     modalType: 'login' | 'register'
-
+    language: string
 }
 
 const initialState: StateType = {
     isModalVisible: false,
     modalType: 'login',
+    language: 'ru'
 }
 
 
@@ -28,13 +29,20 @@ export const appReducer = createSlice({
                 modalType: action.payload
             }
         },
+        setLanguage: (state, action) => {
+            return {
+                ...state,
+                language: action.payload
+            }
+        },
     },
     extraReducers: {}
 })
 
 export const {
     setIsModalVisible,
-    setModalType
+    setModalType,
+    setLanguage
 } = appReducer.actions
 
 export default appReducer.reducer

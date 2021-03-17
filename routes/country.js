@@ -1,35 +1,27 @@
 const {Router} = require('express')
 const router = Router()
 const Country = require('../models/Country')
-
-
-//api/generate записываем страну в БД
-router.post(
-    '/generate',
-    async (req, res) => {
-        console.log(req.body)
-        try {
-            // const date = new Date().toLocaleString()
-            const country = new Country({
-                ...req.body
-            })
-            await country.save()
-            res.status(201).json({message: "Счет успешно записан", ok: true})
-        } catch (e) {
-            res.status(500).json({message: "Что-то пошло не так, попробуйте ещё", ok: false})
-        }
-
-    })
+const DeCountry = require('../models/DeCountry')
+const EnCountry = require('../models/EnCountry')
 
 // /api/countries получаем список стран
 router.get(
     '/countries',
     async (req, res) => {
-
+console.log('req.params.lang', req)
         try {
-            const countries = await Country.find({})
-            console.log(countries)
-            res.json(countries)
+            if(req.query.lang == 'ru'){
+                const countries = await Country.find({})
+                res.json(countries)
+            } else if (req.query.lang == 'en'){
+                const countries = await EnCountry.find({})
+                res.json(countries)
+            } else {
+                const countries = await DeCountry.find({})
+                res.json(countries)
+            }
+
+
         } catch (e) {
             res.status(500).json({message: "Что-то пошло не так, попробуйте ещё", ok: false})
         }
@@ -37,9 +29,18 @@ router.get(
 // /api/countries/:id
 router.get('/countries/:id', async (req, res) => {
     try {
+        if(req.query.lang == 'ru'){
+            const country = await Country.findById(req.params.id)
+            res.json(country)
+        } else if (req.query.lang == 'en'){
+            const country = await EnCountry.findById(req.params.id)
+            res.json(country)
+        } else {
+            const country = await DeCountry.findById(req.params.id)
+            res.json(country)
+        }
 
-        const country = await Country.findById(req.params.id)
-        res.json(country)
+
     } catch (e) {
         res.status(500).json({message: "Что-то пошло не так, попробуйте ещё"})
     }

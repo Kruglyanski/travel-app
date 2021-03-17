@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Image} from 'antd'
 import './CountryPage.css'
 import {fetchCountry} from '../../redux/countryReducer'
@@ -22,14 +22,38 @@ const CountryPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
     const dispatch = useDispatch()
     const {pathname} = useLocation()
     const currentCountry = useSelector((state: RootStateType) => state.countries.currentCountry)
+    const language = useSelector((state: RootStateType) => state.app.language)
+    const [capital, setCapital] = useState('Столица')
+    const [places, setPlaces] = useState('Интересные места')
+    const [video, setVideo] = useState('Видео')
+    const [map, setMap] = useState('Карта')
+    useEffect(() => {
+        if (language === 'en') {
+            setCapital('Capital')
+            setPlaces('Sights')
+            setVideo('Video')
+            setMap('Map')
+        } else if (language === 'de') {
+            setCapital('Hauptstadt')
+            setPlaces('Sehenswürdigkeiten')
+            setVideo('Video')
+            setMap('Karte')
+        } else {
+            setCapital('Столица')
+            setPlaces('Интересные места')
+            setVideo('Видео')
+            setMap('Карта')
+
+        }
+    }, [language])
 
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [pathname])
 
     useEffect(() => {
-        dispatch(fetchCountry(props.match.params.id))
-    }, [])
+        dispatch(fetchCountry({id:props.match.params.id, lang:language}))
+    }, [language])
 
     return (
         <>
@@ -48,7 +72,7 @@ const CountryPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
                                     {currentCountry.name}
                                 </h2>
                                 <p className='capital'>
-                                    Столица: <b>{currentCountry.capital}</b>
+                                    {capital}: <b>{currentCountry.capital}</b>
                                 </p>
                                 <p className='countryDescription'>
                                     {currentCountry.description}
@@ -63,7 +87,7 @@ const CountryPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
                     </div>
 
                     <div className="carousel">
-                        <h2 className='subTitle'>Интересные места</h2>
+                        <h2 className='subTitle'>{places}</h2>
                         <Carousel
                             dotPosition='top'
                             autoplay
@@ -81,7 +105,7 @@ const CountryPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
                         </Carousel>
                     </div>
                     <div className='video'>
-                        <h2 className='subTitle'>Видеоролик</h2>
+                        <h2 className='subTitle'>{video}</h2>
                         {/*@ts-ignore*/}
                         <ReactPlayer
                             width={'60vw'}
@@ -91,7 +115,7 @@ const CountryPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
                         />
                     </div>
                     <div className='map'>
-                        <h2 className='subTitle'>Карта</h2>
+                        <h2 className='subTitle'>{map}</h2>
                         <YAMap coords={currentCountry.capitalLocation.coordinates}/>
                     </div>
                 </div>

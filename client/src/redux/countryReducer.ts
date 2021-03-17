@@ -51,8 +51,8 @@ const initialState: StateType = {
 
 export const fetchCountries = createAsyncThunk(
     'countryReducer/fetchCountries ',
-    async () => {
-        const data = await api.fetchCountries()
+    async (lang: string) => {
+        const data = await api.fetchCountries(lang)
             .then((res) => res && res.json())
 
         if (!data) {
@@ -65,8 +65,8 @@ export const fetchCountries = createAsyncThunk(
 )
 export const fetchCountry = createAsyncThunk(
     'countryReducer/fetchCountry ',
-    async (id: string) => {
-        const data = await api.fetchCountry(id)
+    async ({id, lang}:{id: string, lang: string}) => {
+        const data = await api.fetchCountry(id, lang)
             .then((res) => res && res.json())
         if (!data) {
             throw new Error(data.message || 'Something went wrong!')
@@ -92,8 +92,8 @@ export const getCurrency = createAsyncThunk(
 )
 export const getWeather = createAsyncThunk(
     'countryReducer/getWeather ',
-    async (id: string) => {
-        const data = await api.getWeather(id)
+    async ({id, lang}:{id: string, lang: string}) => {
+        const data = await api.getWeather(id, lang)
             .then((res) => res && res.json())
         if (!data) {
             throw new Error(data.message || 'Something went wrong!')

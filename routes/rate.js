@@ -20,14 +20,13 @@ router.post(
 
     })
 
-// /api/getrate получаем список рейтинга
+// yarn add react-i18next i18next i18next-http-backend i18next-browser-languagedetector получаем список рейтинга
 router.get(
     '/getrate',
     async (req, res) =>{
 
         try {
             const rate = await Rate.find({})
-            console.log(rate)
             res.json(rate)
         } catch (e) {
             res.status(500).json({message: "Что-то пошло не так, попробуйте ещё", ok: false})

@@ -5,6 +5,7 @@ import {HeaderCustom} from '../HeaderCustom/HeaderCustom'
 import {setIsAuthenticated, setMe} from '../../redux/authReducer'
 import {useDispatch, useSelector} from 'react-redux'
 import {RootStateType} from '../../redux/rootReducer'
+import {setLanguage} from '../../redux/appReducer'
 
 
 const {Content, Footer} = Layout
@@ -23,6 +24,8 @@ export const LayoutCustom: React.FC<PropsType> = ({children, isSearch}) => {
     useEffect(() => {
         const localStorageAuthData = JSON.parse(localStorage.getItem('userData') as string)
         localStorageAuthData && dispatch(setIsAuthenticated(localStorageAuthData))
+        const localStorageLangData = JSON.parse(localStorage.getItem('language') as string)
+        dispatch(setLanguage(localStorageLangData.language))
         isAuthenticated && dispatch(setMe(userId))
     }, [dispatch, userId])
 

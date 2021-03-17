@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {getCurrency} from '../../redux/countryReducer'
 import {useDispatch, useSelector} from 'react-redux'
 import {RootStateType} from '../../redux/rootReducer'
@@ -11,7 +11,17 @@ export const Currency: React.FC<PropsType> = ({currency}) => {
     const dispatch = useDispatch()
 
     const currencies = useSelector((state: RootStateType) => state.countries.currencies)
-
+    const language = useSelector((state: RootStateType) => state.app.language)
+    const [course, setCourse] = useState('Курс')
+    useEffect(() => {
+        if (language === 'en') {
+            setCourse('Course')
+        } else if (language === 'de') {
+            setCourse('Kurs')
+        } else {
+            setCourse('Курс')
+        }
+    }, [language])
 
     useEffect(() => {
         dispatch(getCurrency())
@@ -20,7 +30,7 @@ export const Currency: React.FC<PropsType> = ({currency}) => {
     return (
         <div>
             <div className="currencies">
-                <h3>Курс {currency}:</h3>
+                <h3>{course} {currency}:</h3>
                 {
                     currencies.rates && <div>
                         <p><b>USD: {currencies.rates[currency].toFixed(2)}</b></p>

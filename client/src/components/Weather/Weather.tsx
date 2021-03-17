@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {RootStateType} from '../../redux/rootReducer'
 import { getWeather} from '../../redux/countryReducer'
@@ -9,14 +9,26 @@ export const Weather = () => {
     const capitalId = useSelector((state: RootStateType) => state.countries.currentCountry!.capitalLocation.id)
     const weather = useSelector((state: RootStateType) => state.countries.weather)
     const name = useSelector((state: RootStateType) => state.countries.currentCountry!.capital)
-    useEffect( () => {
-        dispatch(getWeather(capitalId))
+    const language = useSelector((state: RootStateType) => state.app.language)
+    const [weatherIn, setWeatherIn] = useState('Погода в')
+    useEffect(() => {
+        if (language === 'en') {
+            setWeatherIn('Weather in')
+        } else if (language === 'de') {
+            setWeatherIn('Wetter in')
+        } else {
+            setWeatherIn('Погода в')
+        }
+    }, [language])
 
-    }, [])
+    useEffect( () => {
+        dispatch(getWeather({id: capitalId, lang: language}))
+
+    }, [language])
 
     return (
         <div className='weather'>
-            <h3>Погода в {name}:</h3>
+            <h3>{weatherIn} {name}:</h3>
 
             {
                 weather.weather && <div>
