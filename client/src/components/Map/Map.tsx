@@ -10,11 +10,9 @@ export const YAMap = ({coords}) => {
         zoom: 10,
     }
     return(
-        <YMaps>
+        <YMaps className='map'>
             <div id="map-basics">
-
-                <Map state={mapData} >
-
+                <Map state={mapData} style={{width: '60vw', height: '33.75vw'}} >
                     <Placemark geometry={coords} />
                     <FullscreenControl />
                 </Map>

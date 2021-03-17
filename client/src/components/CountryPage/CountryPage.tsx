@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React, {useEffect} from 'react'
 import {Image} from 'antd'
 import './CountryPage.css'
@@ -18,11 +17,9 @@ type MatchParams = {
     id: string
 }
 const CountryPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
+
     const dispatch = useDispatch()
-
     const { pathname } = useLocation()
-
-
     const currentCountry = useSelector((state: RootStateType) => state.countries.currentCountry)
 
         useEffect(() => {
@@ -38,32 +35,35 @@ const CountryPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
             {
                 currentCountry &&
                 <div className='countryPageContent'>
-                    <div className='countryInfo'>
-                        <div className='countryImg'>
-                            <Image
-                                src={currentCountry.imageUrl}
-                            />
+                    <div className='upperRow'>
+                        <div className='countryInfo'>
+                            <div className='countryImg'>
+                                <Image
+                                    src={currentCountry.imageUrl}
+                                />
+                            </div>
+                            <div className="text">
+                                <h2 className='title'>
+                                    {currentCountry.name}
+                                </h2>
+                                <p className='capital'>
+                                    Столица: <b>{currentCountry.capital}</b>
+                                </p>
+                                <p className='countryDescription'>
+                                    {currentCountry.description}
+                                </p>
+                            </div>
                         </div>
-                        <div className="text">
-                            <h2 className='title'>
-                                {currentCountry.name}
-                            </h2>
-                            <p className='capital'>
-                                Столица: <b>{currentCountry.capital}</b>
-                            </p>
-                            <p className='countryDescription'>
-                                {currentCountry.description}
-                            </p>
+                        <div>
+                            <Currency currency={currentCountry.currency}/>
+                            <Weather />
+                            <Time/>
                         </div>
                     </div>
-                    <div>
-                        <Currency currency={currentCountry.currency}/>
-                        <Weather />
-                        <Time/>
-                    </div>
+
                     <div className="carousel">
-                        <h2 className='placesTitle'>Интересные места</h2>
-                        <Carousel  autoplay effect="fade">
+                        <h2 className='subTitle'>Интересные места</h2>
+                        <Carousel dotPosition='top'  autoplay effect="fade">
                             {currentCountry.places.map((i, index) => {
                                 return (
                                     <div key={index}>
@@ -75,15 +75,18 @@ const CountryPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
                             })}
                         </Carousel>
                     </div>
-                    <div></div>
-                    <div>
+                    <div className='video'>
+                        <h2 className='subTitle'>Видеоролик</h2>
+                        {/*@ts-ignore*/}
                         <ReactPlayer
+                            width={'60vw'}
+                            height={'33.75vw'}
                             url={currentCountry.videoUrl}
                             controls={true}
                         />
                     </div>
-                    <div></div>
-                    <div>
+                    <div className='map'>
+                        <h2 className='subTitle'>Карта</h2>
                         <YAMap coords={currentCountry.capitalLocation.coordinates}/>
                     </div>
                 </div>

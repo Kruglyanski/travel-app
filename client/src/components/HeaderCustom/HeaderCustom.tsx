@@ -18,7 +18,6 @@ export const HeaderCustom: React.FC<PropsType> = ({isSearch}) => {
     const dispatch = useDispatch()
     const avatar = useSelector((state: RootStateType) => state.auth.avatar)
     const isAuthenticated = useSelector((state: RootStateType) => state.auth.isAuthenticated)
-    const userId = useSelector((state: RootStateType) => state.auth.userId)
     const userName = useSelector((state: RootStateType) => state.auth.name)
 
     const logoutHandler = () => {
@@ -47,8 +46,6 @@ export const HeaderCustom: React.FC<PropsType> = ({isSearch}) => {
                 </Link>
                 <h1>Travel App</h1>
                 {/*<Select/>*/}
-                <div></div>
-                <div className='me'>
 
                     {
                         !isAuthenticated
@@ -79,9 +76,6 @@ export const HeaderCustom: React.FC<PropsType> = ({isSearch}) => {
                             </>
 
                     }
-
-                </div>
-
 
             </div>
             <div className='lowerHeader'>

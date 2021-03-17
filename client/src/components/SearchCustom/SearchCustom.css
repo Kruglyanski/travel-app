@@ -1,8 +1,20 @@
-.searchWrapper {
-    width: 246px;
-    height: 40px;
-    margin: 200px 100px 0 auto;
+@media (min-width: 320px) and (max-width: 768px) {
+    .searchWrapper {
+        width: 246px;
+        height: 40px;
+        margin: 200px auto 0 ;
+    }
+
 }
+@media (min-width: 769px)  {
+    .searchWrapper {
+        width: 246px;
+        height: 40px;
+        margin: 200px 100px 0 auto;
+    }
+
+}
+
 
 .searchWrapper button, .searchWrapper .ant-input-group-addon {
     background-color: #D46C4D;

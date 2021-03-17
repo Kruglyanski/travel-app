@@ -23,11 +23,12 @@ export const Currency: React.FC<PropsType> = ({currency}) => {
     return (
         <div>
             <div className="currencies">
+                <h3>Курс {currency}:</h3>
                 {
                     currencies.rates && <div>
-                    <p>Курс валюты относительно доллара США: {currencies.rates[currency].toFixed(2)}</p>
-                    <p>Курс валюты относительно евро: {(currencies.rates[currency]/currencies.rates['EUR']).toFixed(2)}</p>
-                    <p>Курс валюты относительно рубля: {(currencies.rates[currency]/currencies.rates['RUB']).toFixed(2)}</p>
+                    <p><b>USD: {currencies.rates[currency].toFixed(2)}</b></p>
+                    <p><b>EUR: {(currencies.rates[currency]/currencies.rates['EUR']).toFixed(2)}</b></p>
+                    <p><b>RUB: {(currencies.rates[currency]/currencies.rates['RUB']).toFixed(2)}</b></p>
                 </div>
                 }
 

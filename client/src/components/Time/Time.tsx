@@ -13,9 +13,10 @@ function calcTime( offset: number) {
     const dayOfWeek = nd.getDay()
     const year = nd.getFullYear()
     const month = nd.getMonth()
+    const zero = (a: number) => { return a < 10 ? "0"+a : a }
     const monthArr = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря']
     const weekArr = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота']
-    return (day + ' ' +monthArr[month]+ ' ' +year+ ' ' +'года, '+ weekArr[dayOfWeek] + ' ' +hour+ ':' + minutes + ':' + seconds)
+    return (day + ' ' +monthArr[month]+ ' ' +year+ ' ' +'года, '+ weekArr[dayOfWeek] + ' ' +zero(hour)+ ':' + zero(minutes) + ':' + zero(seconds))
 
 }
 
@@ -31,8 +32,8 @@ export const  Time = () => {
         return ()=> clearInterval(interval)
     })
     return (
-        <div>
-            <h2>Текущая дата:</h2>
+        <div className='time'>
+            <h3>Текущие дата и время:</h3>
             <p>{time}</p>
         </div>
     )

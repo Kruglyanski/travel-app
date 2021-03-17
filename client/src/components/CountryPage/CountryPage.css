@@ -1,11 +1,42 @@
 .countryPageContent{
     display: grid;
-    grid-template-columns: 6fr 1fr;
-    grid-template-rows: 1fr 2fr 1fr 1fr;
+    grid-template-rows: 1fr 1.5fr 1fr 1fr;
     height: 100%;
     min-height: 50vh;
+    justify-content: center;
+}
+.upperRow {
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+}
+.currencies {
+    border: #D46C4D solid 2px;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    color: #1a6dcd;
 }
 
+.weather {
+    margin-top: 10px;
+    border: #D46C4D solid 2px;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    color: #1a6dcd;
+}
+.time {
+    margin-top: 10px;
+    border: #D46C4D solid 2px;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    color: #1a6dcd;
+}
+
+.time h3, .weather h3, .currencies h3 {
+    color: #1a6dcd;
+}
 .countryInfo .ant-image {
     max-width: 600px;
     width: auto;
@@ -18,9 +49,10 @@
     height: auto!important;
 }
 
-.placesTitle{
+.subTitle{
     width: 300px;
     margin: 0 auto 30px;
+    text-align: center;
 }
 .countryInfo  {
     display: grid;
@@ -41,4 +73,15 @@
 
 .slick-dots-bottom li button {
     background-color: #D46C4D!important;
+}
+
+
+.video {
+    margin: 0 auto;
+    width: 60vw;
+}
+
+.map {
+    margin: 0 auto;
+    width: 60vw;
 }

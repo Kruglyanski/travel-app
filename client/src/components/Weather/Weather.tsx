@@ -8,21 +8,21 @@ export const Weather = () => {
 
     const capitalId = useSelector((state: RootStateType) => state.countries.currentCountry!.capitalLocation.id)
     const weather = useSelector((state: RootStateType) => state.countries.weather)
-
+    const name = useSelector((state: RootStateType) => state.countries.currentCountry!.capital)
     useEffect( () => {
         dispatch(getWeather(capitalId))
 
     }, [])
 
     return (
-        <div>
-            <h3>Погода в столице</h3>
+        <div className='weather'>
+            <h3>Погода в {name}:</h3>
 
             {
                 weather.weather && <div>
                 <img src={"http://openweathermap.org/img/w/" + weather.weather[0].icon + ".png"} />
                 <p>{weather.weather[0].description}</p>
-                <p> Температура: {(weather.main.temp - 273.15).toFixed(1)} &#176; C</p>
+                <p> t: {(weather.main.temp - 273.15).toFixed(1)} &#176; C</p>
             </div>
             }
         </div>
