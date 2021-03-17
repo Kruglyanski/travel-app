@@ -80,7 +80,7 @@ export const CardCustom: React.FC<PropsType> = ({country}) => {
                         ellipsis
                     }
                     >
-                        Столица: {country.capital}
+                        {country.capital}
                     </Typography.Text>}
             />
             <Rate
