@@ -1,4 +1,3 @@
-import {Select} from '../Select/Select'
 import {SearchCustom} from '../SearchCustom/SearchCustom'
 import React from 'react'
 import {Header} from 'antd/lib/layout/layout'
@@ -45,43 +44,38 @@ export const HeaderCustom: React.FC<PropsType> = ({isSearch}) => {
                     <div className="logo"/>
                 </Link>
                 <h1>Travel App</h1>
-                {/*<Select/>*/}
+                {
+                    !isAuthenticated
+                        ?
+                        <>
+                            <div></div>
+                            <div className='login' onClick={loginHandler}>
+                                <a>Log In</a>
+                            </div>
+                            <div className='register' onClick={registerHandler}>
+                                <a>Register</a>
+                            </div>
+                        </>
+                        :
+                        <>
 
-                    {
-                        !isAuthenticated
-                            ?
-                            <>
-                                <div></div>
-                                <div className='login' onClick={loginHandler}>
-                                    <a>Log In</a>
-                                </div>
-                                <div className='register' onClick={registerHandler}>
-                                    <a>Register</a>
-                                </div>
-                            </>
-                            :
-                            <>
-
-                                {
-                                    avatar
-                                        ?
-                                        <AvatarCustom avatar={avatar}/>
-                                        :
-                                        <FileUploader/>
-                                }
-                                <div className='name'>{userName || 'Пользователь'} </div>
-                                <div className='logout' onClick={logoutHandler}>
-                                    <a>Log Out</a>
-                                </div>
-                            </>
-
-                    }
-
+                            {
+                                avatar
+                                    ?
+                                    <AvatarCustom avatar={avatar}/>
+                                    :
+                                    <FileUploader/>
+                            }
+                            <div className='name'>{userName || 'Пользователь'} </div>
+                            <div className='logout' onClick={logoutHandler}>
+                                <a>Log Out</a>
+                            </div>
+                        </>
+                }
             </div>
             <div className='lowerHeader'>
                 {isSearch && <SearchCustom/>}
             </div>
-
         </Header>
     )
 }

@@ -12,7 +12,7 @@ const initialState: StateType = {
 }
 
 
-const appReducer = createSlice({
+export const appReducer = createSlice({
     name: 'appReducer',
     initialState,
     reducers: {

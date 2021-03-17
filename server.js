@@ -53,10 +53,7 @@ if (process.env.NODE_ENV === 'production') { //статика для прода�
         res.sendFile(path.resolve( __dirname, 'client', 'build', 'index.html'))
     } )
 
-
     app.use('/uploads', express.static(path.join(__dirname , 'uploads')))//!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
 
 
 }

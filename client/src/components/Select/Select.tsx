@@ -2,11 +2,7 @@ import React, {useState} from 'react'
 import './Select.css'
 import {DownOutlined} from '@ant-design/icons'
 
-// type PropsType = {
-//     itemHandler: (id: number) => void
-//     items: Array<string>
-//     setTouchedHandler: () => void
-// }
+
 export const Select = () => {
 
     const [dropdown, setDropdown] = useState({

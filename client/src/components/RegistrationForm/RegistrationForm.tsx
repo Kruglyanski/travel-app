@@ -9,8 +9,13 @@ import {QuestionCircleOutlined} from '@ant-design/icons'
 import './RegistrationForm.css'
 import {useDispatch, useSelector} from 'react-redux'
 import {RootStateType} from '../../redux/rootReducer'
-import {authRegister, cleanRegisterMessage, cleanRegistrationForm, registrationFormChange} from '../../redux/authReducer'
-import { setIsModalVisible } from '../../redux/appReducer'
+import {
+    authRegister,
+    cleanRegisterMessage,
+    cleanRegistrationForm,
+    registrationFormChange
+} from '../../redux/authReducer'
+import {setIsModalVisible} from '../../redux/appReducer'
 
 
 const formItemLayout = {
@@ -58,11 +63,9 @@ export const RegistrationForm = () => {
     const registerHandler = async () => {
         await dispatch(authRegister(registrationForm))
 
-
-
     }
     useEffect(() => {
-        if(isRegistered){
+        if (isRegistered) {
             dispatch(cleanRegistrationForm())
             dispatch(setIsModalVisible(false))
             message.success(registerMessage)
@@ -180,8 +183,6 @@ export const RegistrationForm = () => {
                         Отправить
                     </Button>
                 </Form.Item>
-
-
             </Form>
 
         </>

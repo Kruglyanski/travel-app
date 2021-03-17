@@ -9,7 +9,6 @@ export const AdminForm = () => {
             <Form
                 form={form}
             >
-
                 <Form.Item label="Country">
                     <Input placeholder="Country" />
                 </Form.Item>

@@ -9,25 +9,10 @@
     display: grid;
     grid-template-columns: 6fr 1fr;
 }
-.currencies {
-    border: #D46C4D solid 2px;
-    padding: 5px;
-    border-radius: 5px;
-    text-align: center;
-    color: #1a6dcd;
-}
 
-.weather {
+.time, .weather, .currencies  {
     margin-top: 10px;
-    border: #D46C4D solid 2px;
-    padding: 5px;
-    border-radius: 5px;
-    text-align: center;
-    color: #1a6dcd;
-}
-.time {
-    margin-top: 10px;
-    border: #D46C4D solid 2px;
+    border: grey solid 2px;
     padding: 5px;
     border-radius: 5px;
     text-align: center;

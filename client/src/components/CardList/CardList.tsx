@@ -25,8 +25,8 @@ export const CardList = () => {
             {
                 !isFiltered
                     ?
-                countries.map(country => <CardCustom key={country._id} country={country}/>)
-            :
+                    countries.map(country => <CardCustom key={country._id} country={country}/>)
+                    :
                     filteredCountries.map(country => <CardCustom key={country._id} country={country}/>)
 
             }

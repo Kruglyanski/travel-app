@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react'
 import {Image} from 'antd'
 import './CountryPage.css'
-import {fetchCountry, getCurrency} from '../../redux/countryReducer'
+import {fetchCountry} from '../../redux/countryReducer'
 import {useDispatch, useSelector} from 'react-redux'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
-import { useLocation } from "react-router-dom"
+import {useLocation} from 'react-router-dom'
 import {RootStateType} from '../../redux/rootReducer'
 import {Carousel} from 'antd'
 import {YAMap} from '../Map/Map'
@@ -16,15 +16,16 @@ import {Time} from '../Time/Time'
 type MatchParams = {
     id: string
 }
+
 const CountryPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
 
     const dispatch = useDispatch()
-    const { pathname } = useLocation()
+    const {pathname} = useLocation()
     const currentCountry = useSelector((state: RootStateType) => state.countries.currentCountry)
 
-        useEffect(() => {
-            window.scrollTo(0, 0)
-        }, [pathname])
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [pathname])
 
     useEffect(() => {
         dispatch(fetchCountry(props.match.params.id))
@@ -56,7 +57,7 @@ const CountryPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
                         </div>
                         <div>
                             <Currency currency={currentCountry.currency}/>
-                            <Weather />
+                            <Weather/>
                             <Time/>
                         </div>
                     </div>
@@ -67,7 +68,6 @@ const CountryPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
                             dotPosition='top'
                             autoplay
                             effect="fade"
-
                         >
                             {currentCountry.places.map((i, index) => {
                                 return (

@@ -1,9 +1,6 @@
 import React from 'react'
-
 import './App.css'
-import {AdminForm} from './components/AdminForm/AdminForm'
 import {LayoutCustom} from './components/LayoutCustom/LayoutCustom'
-import {FileUploader} from './components/FileUploader/FileUploader'
 import {RegistrationForm} from './components/RegistrationForm/RegistrationForm'
 import {ModalCustom} from './components/ModalCustom/ModalCustom'
 import {RootStateType} from './redux/rootReducer'

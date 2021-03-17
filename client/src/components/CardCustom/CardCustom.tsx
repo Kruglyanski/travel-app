@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {message, Rate} from 'antd'
 import {Card, Typography} from 'antd'
 import {CountryType, getRate, setRate} from '../../redux/countryReducer'
-import { useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {RootStateType} from '../../redux/rootReducer'
 
@@ -26,70 +26,62 @@ export const CardCustom: React.FC<PropsType> = ({country}) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        const filteredRate = rate.filter((i:any) => i.countryId == country._id)
+        const filteredRate = rate.filter((i: any) => i.countryId == country._id)
         let totalRate = 0
-        for(let i=0; i<filteredRate.length; i++){
+        for (let i = 0; i < filteredRate.length; i++) {
             totalRate = totalRate + Number(filteredRate[i].value)
         }
 
-        setCountryRate(totalRate/filteredRate.length)
+        setCountryRate(Math.round(totalRate / filteredRate.length))
 
-    },[rate])
-    console.log('countryRate', countryRate)
+    }, [rate])
+
 
     const cardHandler = () => {
-        history.push(`/`+ country._id)
+        history.push(`/` + country._id)
     }
     const countryId = country._id
     const onRateChange = (rate: number) => {
 
         if (isAuthenticated) {
-            const value =rate.toString()
+            const value = rate.toString()
             dispatch(setRate({value, userId, countryId}))
             dispatch(getRate())
             setIsDisabled(true)
         } else {
             message.warning('Войдите, чтобы оставить оценку')
         }
-
-
-
-
     }
 
     return (
 
-
-            <Card
-                hoverable
-                style={{width: 300}}
-
-                cover={
-                    <img onClick={cardHandler}
-                        style={{height: 200}}
-                        alt={country.name}
-                        src={country.imageUrl}
-                    />
-                }
-            >
-                <Meta
-                    title={country.name}
-                    description={
-                        <Typography.Text ellipsis={
-                            ellipsis
-                        }
-                        >
-                            Столица: {country.capital}
-                        </Typography.Text>}
+        <Card
+            hoverable
+            style={{width: 300}}
+            cover={
+                <img onClick={cardHandler}
+                     style={{height: 200}}
+                     alt={country.name}
+                     src={country.imageUrl}
                 />
-                <Rate
-                    onChange={onRateChange}
-                    disabled={isDisabled}
-                    value={countryRate}
-                />
-            </Card>
-
-
+            }
+        >
+            <Meta
+                title={country.name}
+                description={
+                    <Typography.Text ellipsis={
+                        ellipsis
+                    }
+                    >
+                        Столица: {country.capital}
+                    </Typography.Text>}
+            />
+            <Rate
+                onChange={onRateChange}
+                disabled={isDisabled}
+                value={countryRate}
+            />
+        </Card>
     )
 }
 

@@ -7,7 +7,6 @@ const Rate = require('../models/Rate')
 router.post(
     '/rate',
     async (req, res) => {
-        console.log(req.body)
         try {
 
             const rate = new Rate({
@@ -20,6 +19,7 @@ router.post(
         }
 
     })
+
 // /api/getrate получаем список рейтинга
 router.get(
     '/getrate',

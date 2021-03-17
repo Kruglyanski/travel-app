@@ -1,5 +1,4 @@
 
-
 .lowerHeader {
     background: url("../../assets/images/shary.jpg") 100% 50% no-repeat;
     height: 280px;
@@ -8,26 +7,30 @@
     border-top: 1px solid transparent;
 
 }
+
 @media (min-width: 320px) and (max-width: 768px) {
     .upperHeader {
         display: grid;
         height: 70px;
-        grid-template-columns: 1fr 1fr 1fr 1fr ;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         background-color: white !important;
     }
+
     h1 {
         display: none;
 
     }
 
 }
-@media (min-width: 769px)  {
+
+@media (min-width: 769px) {
     .upperHeader {
         display: grid;
         height: 70px;
         grid-template-columns: 1fr 8fr 1fr 1fr 1fr;
         background-color: white !important;
     }
+
     h1 {
         justify-content: center;
         font-size: 30px;
@@ -35,7 +38,6 @@
     }
 
 }
-
 
 
 .ant-layout-header {
@@ -58,7 +60,7 @@
 }
 
 .ant-avatar {
-    top: 2px!important;
+    top: 2px !important;
 }
 
 

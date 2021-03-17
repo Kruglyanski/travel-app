@@ -15,6 +15,7 @@ export const api = {
             console.log(error)
         })
     },
+
     login(loginForm: LoginFormType) {
 
         return fetch('/api/login', {
@@ -32,6 +33,7 @@ export const api = {
             console.log(error)
         })
     },
+
     getAvatar(userId: string) {
 
         return fetch('/api/me', {
@@ -49,6 +51,7 @@ export const api = {
             console.log(error)
         })
     },
+
     fetchCountries() {
         return fetch(`/api/countries`, {
             method: 'GET'
@@ -60,6 +63,7 @@ export const api = {
                 console.log(error)
             })
     },
+
     fetchCountry(id:string) {
         return fetch(`/api/countries/${id}`, {
             method: 'GET'
@@ -71,6 +75,7 @@ export const api = {
                 console.log(error)
             })
     },
+
     getCurrency() {
         return fetch(`https://openexchangerates.org/api/latest.json?app_id=b3ec4cfefd864b3e949e6fd7d3442370`, {
             method: 'GET'
@@ -82,6 +87,7 @@ export const api = {
                 console.log(error)
             })
     },
+
     getWeather(id: string) {
         return fetch(`https://api.openweathermap.org/data/2.5/weather?id=${id}&lang=ru&appid=8b62af4ed23abd41a5e906b7a4198515`, {
             method: 'GET'
@@ -93,6 +99,7 @@ export const api = {
                 console.log(error)
             })
     },
+
     setRate({value, userId, countryId}:{value: string, userId: string, countryId: string}) {
         return fetch('/api/rate', {
             method: 'POST',
@@ -109,6 +116,7 @@ export const api = {
             console.log(error)
         })
     },
+
     getRate() {
         return fetch('/api/getrate', {
             method: 'GET'

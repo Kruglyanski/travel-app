@@ -31,7 +31,7 @@ export const LoginForm: React.FC = () => {
 
     }
 
-    useEffect(() =>{
+    useEffect(() => {
         if (isAuthenticated) {
             dispatch(setIsModalVisible(false))
             dispatch(cleanLoginForm())
@@ -40,7 +40,6 @@ export const LoginForm: React.FC = () => {
         } else {
             authError && message.error(authError)
         }
-
 
 
     }, [isAuthenticated, authError, dispatch])

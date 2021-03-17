@@ -2,14 +2,14 @@ import React from 'react'
 import {Modal} from 'antd'
 import {useDispatch, useSelector} from 'react-redux'
 import {RootStateType} from '../../redux/rootReducer'
-import { setIsModalVisible } from '../../redux/appReducer'
-//import {setIsModalVisible} from '../../redux/appReducer'
+import {setIsModalVisible} from '../../redux/appReducer'
+
 
 type PropType = {
     children: React.ReactNode
 }
 
-export const ModalCustom:React.FC<PropType>  = (props) => {
+export const ModalCustom: React.FC<PropType> = (props) => {
 
     const dispatch = useDispatch()
 
@@ -20,7 +20,7 @@ export const ModalCustom:React.FC<PropType>  = (props) => {
     }
 
     const handleCancel = () => {
-       dispatch(setIsModalVisible(false))
+        dispatch(setIsModalVisible(false))
     }
 
     return (

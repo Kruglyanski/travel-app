@@ -6,8 +6,6 @@ import {RootStateType} from '../../redux/rootReducer'
 import { filterCountries } from '../../redux/countryReducer'
 const { Search } = Input
 
-
-
 export const SearchCustom = () => {
     const dispatch = useDispatch()
     const countries = useSelector((state: RootStateType) => state.countries.countries)

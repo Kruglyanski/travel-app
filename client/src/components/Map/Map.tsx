@@ -1,8 +1,6 @@
 //@ts-nocheck
-
 import React from 'react'
 import {YMaps, Map, Placemark, FullscreenControl} from 'react-yandex-maps'
-
 
 export const YAMap = ({coords}) => {
     const mapData = {
@@ -19,8 +17,6 @@ export const YAMap = ({coords}) => {
 
             </div>
         </YMaps>
-
-
 
     )
 }
