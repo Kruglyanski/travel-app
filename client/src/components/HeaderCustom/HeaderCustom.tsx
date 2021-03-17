@@ -14,7 +14,7 @@ import {FileUploader} from '../FileUploader/FileUploader'
 type PropsType = {
     isSearch: boolean
 }
-export const HeaderCustom:React.FC<PropsType> = ({isSearch}) => {
+export const HeaderCustom: React.FC<PropsType> = ({isSearch}) => {
     const dispatch = useDispatch()
     const avatar = useSelector((state: RootStateType) => state.auth.avatar)
     const isAuthenticated = useSelector((state: RootStateType) => state.auth.isAuthenticated)
@@ -42,27 +42,28 @@ export const HeaderCustom:React.FC<PropsType> = ({isSearch}) => {
     return (
         <Header style={{width: '100%'}}>
             <div className='upperHeader'>
-                <div className="logo"/>
+                <Link to={'/'}>
+                    <div className="logo"/>
+                </Link>
                 <h1>Travel App</h1>
-                <Select/>
-
+                {/*<Select/>*/}
+                <div></div>
                 <div className='me'>
 
                     {
                         !isAuthenticated
                             ?
-                            <div>
+                            <>
+                                <div></div>
                                 <div className='login' onClick={loginHandler}>
-                                    Log In
+                                    <a>Log In</a>
                                 </div>
                                 <div className='register' onClick={registerHandler}>
-                                    Register
+                                    <a>Register</a>
                                 </div>
-                            </div>
+                            </>
                             :
                             <>
-
-                                <div className='name'>{userName || 'Matrix Matrix'} </div>
 
                                 {
                                     avatar
@@ -71,9 +72,9 @@ export const HeaderCustom:React.FC<PropsType> = ({isSearch}) => {
                                         :
                                         <FileUploader/>
                                 }
-
+                                <div className='name'>{userName || 'Пользователь'} </div>
                                 <div className='logout' onClick={logoutHandler}>
-                                    Log Out
+                                    <a>Log Out</a>
                                 </div>
                             </>
 

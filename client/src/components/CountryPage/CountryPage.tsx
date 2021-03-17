@@ -5,6 +5,7 @@ import './CountryPage.css'
 import {fetchCountry, getCurrency} from '../../redux/countryReducer'
 import {useDispatch, useSelector} from 'react-redux'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
+import { useLocation } from "react-router-dom"
 import {RootStateType} from '../../redux/rootReducer'
 import {Carousel} from 'antd'
 import {YAMap} from '../Map/Map'
@@ -13,20 +14,20 @@ import {Currency} from '../Currency/Currency'
 import {Weather} from '../Weather/Weather'
 import {Time} from '../Time/Time'
 
-const contentStyle = {
-    height: '160px',
-    color: '#fff',
-    lineHeight: '160px',
-    textAlign: 'center',
-    background: '#364d79'
-}
 type MatchParams = {
     id: string
 }
 const CountryPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
     const dispatch = useDispatch()
+
+    const { pathname } = useLocation()
+
+
     const currentCountry = useSelector((state: RootStateType) => state.countries.currentCountry)
 
+        useEffect(() => {
+            window.scrollTo(0, 0)
+        }, [pathname])
 
     useEffect(() => {
         dispatch(fetchCountry(props.match.params.id))
@@ -66,7 +67,7 @@ const CountryPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
                             {currentCountry.places.map((i, index) => {
                                 return (
                                     <div key={index}>
-                                        <img className='carouselImg' src={i.photoUrl}/>
+                                        <Image className='carouselImg' src={i.photoUrl}/>
                                         <h3>{i.name}</h3>
                                         <p>{i.description}</p>
                                     </div>
@@ -76,7 +77,10 @@ const CountryPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
                     </div>
                     <div></div>
                     <div>
-                        <ReactPlayer url={currentCountry.videoUrl} />
+                        <ReactPlayer
+                            url={currentCountry.videoUrl}
+                            controls={true}
+                        />
                     </div>
                     <div></div>
                     <div>

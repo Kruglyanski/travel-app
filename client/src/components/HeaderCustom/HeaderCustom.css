@@ -1,7 +1,7 @@
 .upperHeader {
     display: grid;
     height: 70px;
-    grid-template-columns: 1fr 5fr 1fr 6fr;
+    grid-template-columns: 2fr 10fr 4fr 6fr;
     background-color: white !important;
 }
 
@@ -16,6 +16,9 @@
 
 h1 {
     justify-content: center;
+    cursor: pointer;
+    font-size: 30px;
+
 }
 
 
@@ -31,13 +34,17 @@ h1 {
     margin: 0 auto;
     background-image: url("../../assets/images/logo.png");
     background-size: contain;
+    cursor: pointer;
 }
 
 .me {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 2fr 2fr 2fr;
+}
+.me p{
+    cursor: pointer;
 }
 
-.login{
-    float: left;
-}
+
+
+

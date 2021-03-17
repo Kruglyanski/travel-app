@@ -28,18 +28,24 @@ export type CountryType = {
 }
 
 type StateType = {
+    isFiltered: boolean
+    filteredCountries: Array<CountryType>
     countries: Array<CountryType>
     currentCountry: CountryType | null
     currencies: any
     weather: any
+    rate: any
 }
 
 
 const initialState: StateType = {
+    isFiltered: false,
+    filteredCountries: [],
     countries: [],
     currentCountry: null,
     currencies: {},
-    weather: {}
+    weather: {},
+    rate: []
 }
 
 
@@ -59,7 +65,7 @@ export const fetchCountries = createAsyncThunk(
 )
 export const fetchCountry = createAsyncThunk(
     'countryReducer/fetchCountry ',
-    async (id:string) => {
+    async (id: string) => {
         const data = await api.fetchCountry(id)
             .then((res) => res && res.json())
         if (!data) {
@@ -98,10 +104,44 @@ export const getWeather = createAsyncThunk(
     }
 )
 
+export const setRate = createAsyncThunk(
+    'countryReducer/setRate ',
+    async ({value, userId, countryId}:{value: string, userId: string, countryId: string}) => {
+        const data = await api.setRate({value, userId, countryId})
+            .then((res) => res && res.json())
+        if (!data) {
+            throw new Error(data.message || 'Something went wrong!')
+        }
+
+        return data
+
+    }
+)
+export const getRate = createAsyncThunk(
+    'countryReducer/getRate ',
+    async () => {
+        const data = await api.getRate()
+            .then((res) => res && res.json())
+        if (!data) {
+            throw new Error(data.message || 'Something went wrong!')
+        }
+
+        return data
+
+    }
+)
+
 const countryReducer = createSlice({
     name: 'countryReducer',
     initialState,
     reducers: {
+        filterCountries: (state, action) => {
+            return {
+                ...state,
+                isFiltered: true,
+                filteredCountries: action.payload
+            }
+        },
 
     },
     extraReducers: {
@@ -137,10 +177,18 @@ const countryReducer = createSlice({
             }
 
         },
+        [getRate.fulfilled.type]: (state, action) => {
+
+            return {
+                ...state,
+                rate: action.payload
+            }
+
+        }
 
     }
 })
 
-export const {} = countryReducer.actions
+export const {filterCountries} = countryReducer.actions
 
 export default countryReducer.reducer

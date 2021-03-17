@@ -93,6 +93,32 @@ export const api = {
                 console.log(error)
             })
     },
+    setRate({value, userId, countryId}:{value: string, userId: string, countryId: string}) {
+        return fetch('/api/rate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                value, userId, countryId
+            })
+        }).then(function (response) {
+            console.log(response)
+            return response
+        }).catch(function (error) {
+            console.log(error)
+        })
+    },
+    getRate() {
+        return fetch('/api/getrate', {
+            method: 'GET'
+        }).then(function (response) {
+            console.log(response)
+            return response
+        })
+            .catch(function (error) {
+                console.log(error)
+            })
 
-
+    }
 }

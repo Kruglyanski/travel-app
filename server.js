@@ -24,6 +24,7 @@ const storage = multer.diskStorage({
 app.use(express.json({extended: true}))
 app.use('/api/', require('./routes/auth')) //импортируем роуты
 app.use('/api/', require('./routes/country'))
+app.use('/api/', require('./routes/rate'))
 
 
 app.use(multer({storage}).single("image"))

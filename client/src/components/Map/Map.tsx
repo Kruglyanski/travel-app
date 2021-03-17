@@ -1,24 +1,29 @@
 //@ts-nocheck
-import { YMaps, Map, Placemark } from "react-yandex-maps"
 
+import React from 'react'
+import {YMaps, Map, Placemark, FullscreenControl} from 'react-yandex-maps'
 
-
-// const coordinates = [
-//     [55.684758, 37.738521],
-//     [57.684758, 39.738521]
-// ]
 
 export const YAMap = ({coords}) => {
     const mapData = {
         center: coords,
-        zoom: 5,
+        zoom: 10,
     }
     return(
         <YMaps>
-            <Map defaultState={mapData}>
-                <Placemark geometry={coords} />
-            </Map>
+            <div id="map-basics">
+
+                <Map state={mapData} >
+
+                    <Placemark geometry={coords} />
+                    <FullscreenControl />
+                </Map>
+
+            </div>
         </YMaps>
+
+
+
     )
 }
 
