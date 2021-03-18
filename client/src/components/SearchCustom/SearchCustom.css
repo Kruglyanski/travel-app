@@ -1,0 +1,38 @@
+@media (min-width: 320px) and (max-width: 768px) {
+    .searchWrapper {
+        width: 246px;
+        height: 40px;
+        margin: 200px auto 0 ;
+    }
+
+}
+@media (min-width: 769px)  {
+    .searchWrapper {
+        width: 246px;
+        height: 40px;
+        margin: 150px 50px 0 auto;
+    }
+
+}
+
+
+.searchWrapper button, .searchWrapper .ant-input-group-addon {
+    background-color: #D46C4D;
+    border: none;
+    border-radius: 0 12px 12px 0!important;
+}
+
+
+.searchWrapper button:hover {
+    background-color: #DFC5B2;
+    outline: none;
+}
+
+.searchWrapper .ant-input-affix-wrapper{
+    border: #D46C4D;
+    height: 40px;
+    border-radius: 12px 0 0 12px!important;
+    padding-bottom: 10px;
+
+}
+

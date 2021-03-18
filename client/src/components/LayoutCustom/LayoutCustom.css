@@ -1,0 +1,27 @@
+.layout {
+    min-height: 100vh;
+    height: auto;
+}
+
+
+.ant-layout-footer {
+    padding: 0;
+
+}
+
+.footerContent {
+    width: 300px;
+    height: auto;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+.rs {
+    width: 68px;
+    height: 25px;
+    background-image: url("https://rs.school/images/rs_school_js.svg");
+    background-size: cover;
+    margin: 0 auto;
+}
+
+

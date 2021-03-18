@@ -1,0 +1,50 @@
+{
+  "name": "travel-app",
+  "version": "1.0.0",
+  "description": "travel-app for rsschool react course",
+  "main": "server.js",
+  "author": "Roman Kruglyansky <eviltroll@yandex.ru>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "NODE_ENV=production node server.js",
+    "server": "node server.js",
+    "server:watch": "nodemon",
+    "build-client": "cd client && npm run build",
+    "install-client": "cd client && npm install  ",
+    "client": "cd client && npm run start ",
+    "dev": "concurrently \"npm run server:watch\" \"npm run client\"",
+    "heroku-postbuild": "npm run install-client && npm run build-client"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.js",
+      "**/*.spec.js",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "./"
+    ],
+    "ext": "js"
+  },
+  "dependencies": {
+    "@types/yandex-maps": "^2.1.14",
+    "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^6.0.0",
+    "config": "^3.3.4",
+    "express": "^4.17.1",
+    "express-form-data": "^2.0.14",
+    "express-validator": "^6.10.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "mongoose": "^5.11.19",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.7",
+    "react-i18next": "^11.8.10",
+    "react-player": "^2.9.0",
+    "react-yandex-maps": "^4.6.0"
+  },
+  "devDependencies": {}
+}
