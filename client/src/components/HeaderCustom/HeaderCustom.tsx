@@ -35,7 +35,7 @@ export const HeaderCustom: React.FC<PropsType> = ({isSearch}) => {
         } else {
             setLogin('Войти')
             setLogout('Выйти')
-            setRegister('Зарегистрираваться')
+            setRegister('Зарегистрироваться')
         }
     }, [language])
     const logoutHandler = () => {
