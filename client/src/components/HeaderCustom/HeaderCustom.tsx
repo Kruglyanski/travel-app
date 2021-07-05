@@ -21,7 +21,7 @@ export const HeaderCustom: React.FC<PropsType> = ({isSearch}) => {
     const userName = useSelector((state: RootStateType) => state.auth.name)
     const language = useSelector((state: RootStateType) => state.app.language)
     const [login, setLogin] = useState('Войти')
-    const [register, setRegister] = useState('Зарегистрираваться')
+    const [register, setRegister] = useState('Зарегистрироваться')
     const [logout, setLogout] = useState('Выйти')
     useEffect(() => {
         if (language === 'en') {
