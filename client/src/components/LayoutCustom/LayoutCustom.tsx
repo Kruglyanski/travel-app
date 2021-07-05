@@ -40,7 +40,7 @@ export const LayoutCustom: React.FC<PropsType> = ({children, isSearch}) => {
             </Content>
             <Footer style={{textAlign: 'center'}}>
                 <div className="footerContent">
-                    Created by <a href="https://github.com/Kruglyanski">Roman Kruglyansky</a> 2021
+                    Created by <a href="https://github.com/Kruglyanski">R. Kruglyansky</a> 2021
                 </div>
             </Footer>
         </Layout>
