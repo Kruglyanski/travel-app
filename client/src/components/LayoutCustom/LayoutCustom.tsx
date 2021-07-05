@@ -41,9 +41,6 @@ export const LayoutCustom: React.FC<PropsType> = ({children, isSearch}) => {
             <Footer style={{textAlign: 'center'}}>
                 <div className="footerContent">
                     Created by <a href="https://github.com/Kruglyanski">Roman Kruglyansky</a> 2021
-<!--                     <a href="https://rs.school/js/">
-                        <div className="rs"/>
-                    </a> -->
                 </div>
             </Footer>
         </Layout>
